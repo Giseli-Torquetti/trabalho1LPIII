@@ -15,15 +15,6 @@ import javax.swing.JPanel;
  * @author gisel
  */
 public class CadastroCliente extends javax.swing.JPanel {
-     public static void main (String[] args){
-        JFrame frame = new JFrame("CadastroCliente");
-        frame.setSize(400, 380);
-        JPanel panel = new CadastroCliente();
-        frame.setContentPane(panel);      
-        frame.setVisible(true);
-
-    }
-
     /**
      * Creates new form CadastroCliente
      */
