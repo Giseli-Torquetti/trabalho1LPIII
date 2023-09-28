@@ -20,18 +20,6 @@ public class ListaQuartos extends javax.swing.JPanel {
 
     private static QuartosTableModel tableModel = new QuartosTableModel(new String[]{"Código", "Número", "Preço", "Tipo"});
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("ListaQuartos");
-        frame.setSize(400, 380);
-        JPanel panel = new ListaQuartos();
-        frame.setContentPane(panel);
-        frame.setVisible(true);
-
-    }
-
-    /**
-     * Creates new form ListaQuartos
-     */
     public ListaQuartos() {
         initComponents();
         popularTabela();
