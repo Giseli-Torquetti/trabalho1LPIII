@@ -1,23 +1,33 @@
 package br.edu.unijui.dataBase.DAO;
 
 import br.edu.unijui.dataBase.DataBase;
+import br.edu.unijui.dataBase.Models.TipoQuarto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class TipoQuartoDAO {
-        public static ResultSet BuscaQuartos() throws SQLException {
+
+    public static ArrayList<TipoQuarto> BuscaQuartos() throws SQLException {
         DataBase db = new DataBase();
 
         if (db.getConnection() == null) {
             return null;
         }
 
-        PreparedStatement pstmt = db.getConnection().prepareStatement("SELECT quartos.id, numero, preco_diaria, descricao \n"
-                + "FROM quartos\n"
-                + "INNER JOIN tipo_quartos ON (quartos.tipo_quartos_id = tipo_quartos.id)", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        ArrayList<TipoQuarto> tipos = new ArrayList<TipoQuarto>();
+
+        PreparedStatement pstmt = db.getConnection().prepareStatement("SELECT * from tipo_quartos", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
         ResultSet resultset = pstmt.executeQuery();
-        return resultset;
+        while (resultset.next()) {
+            TipoQuarto tipo = new TipoQuarto();
+            tipo.setId(resultset.getInt("id"));
+            tipo.setDescricao(resultset.getString("descricao"));
+            tipos.add(tipo);
+        }
+
+        return tipos;
     }
 }

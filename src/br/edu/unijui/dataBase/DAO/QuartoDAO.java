@@ -2,9 +2,11 @@ package br.edu.unijui.dataBase.DAO;
 
 import br.edu.unijui.dataBase.DataBase;
 import br.edu.unijui.dataBase.Models.Quarto;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class QuartoDAO {
 
@@ -46,5 +48,77 @@ public class QuartoDAO {
         }
 
         return null;
+    }
+
+    public static void CriarQuarto(String numero, double preco, int tipo, String descricaoTipo, boolean criarTipo) throws SQLException {
+        DataBase db = new DataBase();
+        Connection connection = db.getConnection();
+        if (connection == null) {
+            return;
+        }
+
+        PreparedStatement pstmt;
+        connection.setAutoCommit(false);
+
+        if (criarTipo) {
+            pstmt = connection.prepareStatement("insert into tipo_quartos (descricao) values (?)", Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, descricaoTipo);
+
+            pstmt.executeUpdate();
+
+            ResultSet resultSet = pstmt.getGeneratedKeys();
+            if (!resultSet.next()) {
+                return;
+            }
+
+            tipo = resultSet.getInt(1);
+        }
+
+        pstmt = connection.prepareStatement("insert into quartos (numero, preco_diaria, tipo_quartos_id) values (?,?,?)");
+        pstmt.setString(1, numero);
+        pstmt.setDouble(2, preco);
+        pstmt.setInt(3, tipo);
+        pstmt.executeUpdate();
+
+        connection.commit();
+        pstmt.close();
+        db.close();
+    }
+    
+    
+    public static void AlterarQuarto(int idQuarto, String numero, double preco, int tipo, String descricaoTipo, boolean criarTipo) throws SQLException {
+        DataBase db = new DataBase();
+        Connection connection = db.getConnection();
+        if (connection == null) {
+            return;
+        }
+
+        PreparedStatement pstmt;
+        connection.setAutoCommit(false);
+
+        if (criarTipo) {
+            pstmt = connection.prepareStatement("insert into tipo_quartos (descricao) values (?)", Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, descricaoTipo);
+
+            pstmt.executeUpdate();
+
+            ResultSet resultSet = pstmt.getGeneratedKeys();
+            if (!resultSet.next()) {
+                return;
+            }
+
+            tipo = resultSet.getInt(1);
+        }
+
+        pstmt = connection.prepareStatement("update quartos set numero = ?, preco_diaria = ?, tipo_quartos_id = ? where id = ?");
+        pstmt.setString(1, numero);
+        pstmt.setDouble(2, preco);
+        pstmt.setInt(3, tipo);
+        pstmt.setInt(4, idQuarto);
+        pstmt.executeUpdate();
+
+        connection.commit();
+        pstmt.close();
+        db.close();
     }
 }
