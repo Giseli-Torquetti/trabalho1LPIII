@@ -1,5 +1,11 @@
 package br.edu.unijui.dataBase.Interface;
 
+<<<<<<< HEAD
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+=======
+>>>>>>> 4f80992e0fdc1674d69da4380a1fff96d56ff3f1
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -26,7 +32,11 @@ public class Inicio extends javax.swing.JPanel {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+<<<<<<< HEAD
+        Cliente = new javax.swing.JButton();
+=======
         jButton2 = new javax.swing.JButton();
+>>>>>>> 4f80992e0fdc1674d69da4380a1fff96d56ff3f1
 
         jButton1.setText("Quartos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -35,10 +45,17 @@ public class Inicio extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
+        Cliente.setText("Clientes");
+        Cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClienteActionPerformed(evt);
+=======
         jButton2.setText("jButton1");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+>>>>>>> 4f80992e0fdc1674d69da4380a1fff96d56ff3f1
             }
         });
 
@@ -47,6 +64,22 @@ public class Inicio extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
+                .addGap(152, 152, 152)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(Cliente))
+                .addContainerGap(176, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(121, Short.MAX_VALUE)
+                .addComponent(Cliente)
+                .addGap(67, 67, 67)
+                .addComponent(jButton1)
+                .addGap(145, 145, 145))
+=======
                 .addGap(113, 113, 113)
                 .addComponent(jButton1)
                 .addContainerGap(215, Short.MAX_VALUE))
@@ -67,6 +100,7 @@ public class Inicio extends javax.swing.JPanel {
                     .addGap(86, 86, 86)
                     .addComponent(jButton2)
                     .addContainerGap(270, Short.MAX_VALUE)))
+>>>>>>> 4f80992e0fdc1674d69da4380a1fff96d56ff3f1
         );
 
         jButton1.getAccessibleContext().setAccessibleName("jbQuartos");
@@ -80,6 +114,21 @@ public class Inicio extends javax.swing.JPanel {
         frame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+<<<<<<< HEAD
+    private void ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteActionPerformed
+           try {
+            new BuscarClientes(); 
+         } catch (SQLException | ClassNotFoundException ex) {
+             Logger.getLogger(EditarCliente.class.getName()).log(Level.SEVERE, null, ex);
+         }
+
+    }//GEN-LAST:event_ClienteActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cliente;
+    private javax.swing.JButton jButton1;
+=======
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -88,5 +137,6 @@ public class Inicio extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+>>>>>>> 4f80992e0fdc1674d69da4380a1fff96d56ff3f1
     // End of variables declaration//GEN-END:variables
 }

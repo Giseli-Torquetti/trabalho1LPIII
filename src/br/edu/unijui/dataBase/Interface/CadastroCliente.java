@@ -119,6 +119,9 @@ public class CadastroCliente extends javax.swing.JPanel {
                     .addComponent(cancelarCliente))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
+
+        label1.getAccessibleContext().setAccessibleName("Nome do cliente");
+        label2.getAccessibleContext().setAccessibleName("Email do cliente:");
     }// </editor-fold>//GEN-END:initComponents
 
     private void nomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeClienteActionPerformed
