@@ -16,7 +16,7 @@ public class ListaQuartos extends javax.swing.JPanel {
         popularTabela();
     }
 
-    private void popularTabela() {
+    public void popularTabela() {
         try {
             ResultSet quartos = QuartoDAO.BuscaQuartos();
             tableModel.setResultSet(quartos);
@@ -78,7 +78,7 @@ public class ListaQuartos extends javax.swing.JPanel {
     private void jbCriarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCriarQuartoActionPerformed
         JFrame frame = new JFrame("Quarto");
         frame.setSize(400, 380);
-        JPanel panel = new QuartoForm();
+        JPanel panel = new QuartoForm(this);
         frame.setContentPane(panel);
         frame.setVisible(true);
     }//GEN-LAST:event_jbCriarQuartoActionPerformed
@@ -92,7 +92,7 @@ public class ListaQuartos extends javax.swing.JPanel {
         int id = (int) target.getValueAt(target.getSelectedRow(), 0);
         JFrame frame = new JFrame("Quarto");
         frame.setSize(400, 380);
-        JPanel panel = new QuartoForm(id);
+        JPanel panel = new QuartoForm(id, this);
         frame.setContentPane(panel);
         frame.setVisible(true);
     }//GEN-LAST:event_jtQuartosMouseClicked

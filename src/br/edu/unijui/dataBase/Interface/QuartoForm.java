@@ -4,23 +4,29 @@ import br.edu.unijui.dataBase.DAO.QuartoDAO;
 import br.edu.unijui.dataBase.DAO.TipoQuartoDAO;
 import br.edu.unijui.dataBase.Models.Quarto;
 import br.edu.unijui.dataBase.Models.TipoQuarto;
+import java.awt.Window;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class QuartoForm extends javax.swing.JPanel {
 
     private int id;
     private boolean criarNovoTipo = false;
     private ArrayList<TipoQuarto> tipos;
+    private ListaQuartos listaQuartos;
 
-    public QuartoForm() {
+    public QuartoForm(ListaQuartos listaQuartos) {
+        this.listaQuartos = listaQuartos;
         this.id = 0;
         initComponents();
         ListarTipos();
         SelecionarTipo(true);
     }
 
-    public QuartoForm(int idQuarto) {
+    public QuartoForm(int idQuarto, ListaQuartos listaQuartos) {
+        this.listaQuartos = listaQuartos;
         this.id = idQuarto;
         initComponents();
         try {
@@ -184,12 +190,14 @@ public class QuartoForm extends javax.swing.JPanel {
         try {
             if (idQuarto == 0) {
                 QuartoDAO.CriarQuarto(numero, preco, tipoQuarto, descTipo, this.criarNovoTipo);
-                JOptionPane.showMessageDialog(this, "Quarto criado");
-                return;
+            } else {
+                QuartoDAO.AlterarQuarto(idQuarto, numero, preco, tipoQuarto, descTipo, this.criarNovoTipo);
             }
-
-            QuartoDAO.AlterarQuarto(idQuarto, numero, preco, tipoQuarto, descTipo, this.criarNovoTipo);
-            JOptionPane.showMessageDialog(this, "Quarto alterado");
+            JOptionPane.showMessageDialog(this, "Quarto salvo");
+            listaQuartos.popularTabela();
+            JComponent comp = (JComponent) evt.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Erro ao salvar dados");
         }
