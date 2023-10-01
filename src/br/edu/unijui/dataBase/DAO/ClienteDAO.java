@@ -86,19 +86,16 @@ public class ClienteDAO {
             pstmt.setString(2, cliente.getEmail());          
             pstmt.setString(3, cliente.getTelefone());
             pstmt.setInt(4, cliente.getId());
-
+            
             pstmt.executeUpdate();
-             
-            ResultSet resultSet = pstmt.getGeneratedKeys();
-            if (!resultSet.next()) return;
-
+            
             connection.commit();
             pstmt.close();
             db.close();   
             
         }catch (SQLException ex) {
            System.out.println("Não foi possivel alterar os dados do cliente"); 
-             System.out.println(ex);
+            System.out.println(ex);
         }
         
     }
