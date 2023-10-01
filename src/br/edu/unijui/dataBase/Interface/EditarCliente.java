@@ -37,6 +37,7 @@ public class EditarCliente extends javax.swing.JPanel {
 
     private void preencherCampos() {
         if (clienteSelecionado != null) {
+            idClienteEditar.setText(Integer.toString(clienteSelecionado.getId()));          
             nomeClienteEditar.setText(clienteSelecionado.getNome());
             emailClienteEditar.setText(clienteSelecionado.getEmail());
             telefoneClienteEditar.setText(clienteSelecionado.getTelefone());
@@ -60,6 +61,8 @@ public class EditarCliente extends javax.swing.JPanel {
         telefoneClienteEditar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        idClienteEditar = new javax.swing.JTextField();
 
         setToolTipText("");
         setPreferredSize(new java.awt.Dimension(407, 317));
@@ -96,6 +99,12 @@ public class EditarCliente extends javax.swing.JPanel {
         jButton2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButton2.setText("Cancelar");
 
+        jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel5.setText("Cod.");
+        jLabel5.setToolTipText("");
+
+        idClienteEditar.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,7 +127,9 @@ public class EditarCliente extends javax.swing.JPanel {
                                 .addComponent(jLabel3)
                                 .addComponent(emailClienteEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4)
-                                .addComponent(telefoneClienteEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(telefoneClienteEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5)
+                                .addComponent(idClienteEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -126,7 +137,11 @@ public class EditarCliente extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(idClienteEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nomeClienteEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,26 +157,24 @@ public class EditarCliente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(42, 42, 42))
+                .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         Cliente cliente = new Cliente();
-         cliente.setNome(nomeClienteEditar.getText());
+        cliente.setId(Integer.parseInt(idClienteEditar.getText()));       
+        cliente.setNome(nomeClienteEditar.getText());
         cliente.setEmail(emailClienteEditar.getText());      
         cliente.setTelefone(telefoneClienteEditar.getText());
         if (!cliente.getNome().isEmpty() && !cliente.getEmail().isEmpty() && !cliente.getTelefone().isEmpty()) {
-            ClienteDAO.cadastroCliente(cliente);
+            ClienteDAO.editarCadastroCliente(cliente);
             JOptionPane.showMessageDialog(null,
-                "Cliente cadastrado com sucesso!",
+                "Cliente editado com sucesso!",
                 "Sucesso",
                 JOptionPane.INFORMATION_MESSAGE
             );  
-            nomeClienteEditar.setText("");        
-            emailClienteEditar.setText("");        
-            telefoneClienteEditar.setText("");
         } else {
             JOptionPane.showMessageDialog(null,
                 "Preencha todos os campos do cadastro",
@@ -179,12 +192,14 @@ public class EditarCliente extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailClienteEditar;
+    private javax.swing.JTextField idClienteEditar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField nomeClienteEditar;
     private javax.swing.JTextField telefoneClienteEditar;
     // End of variables declaration//GEN-END:variables

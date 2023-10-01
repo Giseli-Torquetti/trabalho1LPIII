@@ -85,7 +85,7 @@ public class ClienteDAO {
             pstmt.setString(1, cliente.getNome());
             pstmt.setString(2, cliente.getEmail());          
             pstmt.setString(3, cliente.getTelefone());
-            pstmt.setInt(3, cliente.getId());
+            pstmt.setInt(4, cliente.getId());
 
             pstmt.executeUpdate();
              
@@ -98,6 +98,7 @@ public class ClienteDAO {
             
         }catch (SQLException ex) {
            System.out.println("Não foi possivel alterar os dados do cliente"); 
+             System.out.println(ex);
         }
         
     }
