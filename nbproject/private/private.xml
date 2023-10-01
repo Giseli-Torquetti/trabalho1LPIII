@@ -3,11 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/Carlos/Projects/Unijui/Linguagem/Trabalhos/trabalho1LPIII/src/br/edu/unijui/dataBase/Interface/QuartoForm.java</file>
+            <file>file:/C:/Users/Carlos/Projects/Unijui/Linguagem/Trabalhos/trabalho1LPIII/src/br/edu/unijui/dataBase/Interface/Inicio.java</file>
+            <file>file:/C:/Users/Carlos/Projects/Unijui/Linguagem/Trabalhos/trabalho1LPIII/src/br/edu/unijui/dataBase/Interface/ListaQuartos.java</file>
+            <file>file:/C:/Users/Carlos/Projects/Unijui/Linguagem/Trabalhos/trabalho1LPIII/src/br/edu/unijui/dataBase/DAO/TipoQuartoDAO.java</file>
+            <file>file:/C:/Users/Carlos/Projects/Unijui/Linguagem/Trabalhos/trabalho1LPIII/src/br/edu/unijui/dataBase/DAO/QuartoDAO.java</file>
+=======
             <file>file:/C:/Users/gisel/Documents/Unijui/LPIII/TrabalhoLPIII/src/br/edu/unijui/dataBase/Models/Cliente.java</file>
             <file>file:/C:/Users/gisel/Documents/Unijui/LPIII/TrabalhoLPIII/src/br/edu/unijui/dataBase/Interface/EditarCliente.java</file>
             <file>file:/C:/Users/gisel/Documents/Unijui/LPIII/TrabalhoLPIII/src/br/edu/unijui/dataBase/Models/ResultSetTableModel.java</file>
             <file>file:/C:/Users/gisel/Documents/Unijui/LPIII/TrabalhoLPIII/src/br/edu/unijui/dataBase/Interface/BuscarClientes.java</file>
             <file>file:/C:/Users/gisel/Documents/Unijui/LPIII/TrabalhoLPIII/src/br/edu/unijui/dataBase/Interface/CadastroCliente.java</file>
+>>>>>>> 694db9c2446ca66845387e6f95447da384de0ba2
         </group>
     </open-files>
 </project-private>

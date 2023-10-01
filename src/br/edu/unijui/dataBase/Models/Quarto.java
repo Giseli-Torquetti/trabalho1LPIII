@@ -3,7 +3,6 @@ package br.edu.unijui.dataBase.Models;
 public class Quarto {
     private int id;
     private String numero;
-    private String descricao;
     private double preco;
     private int tipo;
 
@@ -29,14 +28,6 @@ public class Quarto {
 
     public void setNumero(String numero) {
         this.numero = numero;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public int getTipo() {
