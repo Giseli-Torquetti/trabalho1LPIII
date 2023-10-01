@@ -20,10 +20,7 @@ import javax.swing.JPanel;
 public class EditarCliente extends javax.swing.JPanel {
 
     private Cliente clienteSelecionado;
-     public static void main (String[] args){
-
-    }
-
+   
     /**
      * Creates new form EditarCliente
      */
