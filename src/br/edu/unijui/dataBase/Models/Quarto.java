@@ -37,4 +37,9 @@ public class Quarto {
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }    
+    
+    @Override
+    public String toString(){
+        return this.getNumero();
+    }
 }

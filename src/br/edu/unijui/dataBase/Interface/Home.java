@@ -60,29 +60,34 @@ public class Home extends javax.swing.JPanel {
         });
 
         reservasButton.setText("Reservas");
+        reservasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservasButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(67, 67, 67)
                 .addComponent(ClientesButton)
                 .addGap(18, 18, 18)
                 .addComponent(quartosButton)
                 .addGap(18, 18, 18)
                 .addComponent(reservasButton)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(187, Short.MAX_VALUE)
+                .addContainerGap(188, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ClientesButton)
                     .addComponent(quartosButton)
                     .addComponent(reservasButton))
-                .addGap(90, 90, 90))
+                .addGap(89, 89, 89))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -104,6 +109,15 @@ public class Home extends javax.swing.JPanel {
         frame.setContentPane(panel);
         frame.setVisible(true);
     }//GEN-LAST:event_quartosButtonActionPerformed
+
+    private void reservasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasButtonActionPerformed
+        // TODO add your handling code here:
+        JFrame frame = new JFrame("Quartos");
+        frame.setSize(400, 380);
+        JPanel panel = new Reserva();
+        frame.setContentPane(panel);
+        frame.setVisible(true);
+    }//GEN-LAST:event_reservasButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
