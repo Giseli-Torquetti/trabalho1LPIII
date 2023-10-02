@@ -5,15 +5,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataBase {
+
     private String url;
     private String userName;
     private String password;
     private Connection connection;
-    
+
     // banco de dados padrão
     private final String DATABASE_URL = "jdbc:mysql://localhost:3306/hotel";
     static final String USERNAME = "root";
-    static final String PASSWORD = "root";
+    static final String PASSWORD = "admin";
 
     public DataBase(String url, String userName, String password) throws SQLException {
         this.url = url;
@@ -31,7 +32,7 @@ public class DataBase {
         setConnection();
     }
 
-    private void setConnection() throws SQLException{
+    private void setConnection() throws SQLException {
         try {
             //estabelece a conexão com o banco de dados
             connection = DriverManager.getConnection(url, userName, password);
@@ -39,17 +40,17 @@ public class DataBase {
             System.out.println("Erro ao conectar o Banco de Dados. " + ex.getMessage());
         }
     }
-            
-    public Connection getConnection(){
-      //retorna a conexão estabelecida com o banco de dados 
-      return connection;
-    } 
-    
-    public void close () throws SQLException{
+
+    public Connection getConnection() {
+        //retorna a conexão estabelecida com o banco de dados 
+        return connection;
+    }
+
+    public void close() throws SQLException {
         //encerra a conexão com o banco de dados
         connection.close();
     }
-    
+
     /*métodos get e set para os demais atributos*/
     public String getUrl() {
         return url;
@@ -74,6 +75,5 @@ public class DataBase {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
+
 }

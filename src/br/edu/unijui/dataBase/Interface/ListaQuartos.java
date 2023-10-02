@@ -9,7 +9,7 @@ import javax.swing.JTable;
 
 public class ListaQuartos extends javax.swing.JPanel {
 
-    private static QuartosTableModel tableModel = new QuartosTableModel(new String[]{"Código", "Número", "Preço", "Tipo"});
+    private static QuartosTableModel tableModel = new QuartosTableModel(new String[]{"Código", "Número", "Preço", "Tipo", "Status"});
 
     public ListaQuartos() {
         initComponents();
