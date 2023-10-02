@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class QuartoDAO {
 
@@ -121,4 +122,31 @@ public class QuartoDAO {
         pstmt.close();
         db.close();
     }
+    
+     public static ArrayList<Quarto> BuscaQuartosCB () throws SQLException {
+       DataBase db = new DataBase();
+       
+       ArrayList<Quarto> quartos = new ArrayList();
+       
+       if(db.getConnection() == null) return new ArrayList<>();
+       
+       PreparedStatement pstmt = db.getConnection().prepareStatement("SELECT * FROM QUARTOS");
+       
+       ResultSet resultset = pstmt.executeQuery();
+         System.out.println(resultset);
+       
+       while (resultset.next()){
+            Quarto quarto = new Quarto();
+            quarto.setId(resultset.getInt("id"));
+            quarto.setNumero(resultset.getString("numero"));
+            quarto.setPreco(resultset.getDouble("preco_diaria"));
+            quarto.setTipo(resultset.getInt("tipo_quartos_id"));
+            quartos.add(quarto);
+       }
+         System.out.println(quartos);
+       resultset.close();
+       pstmt.close();
+       db.close();
+       return quartos;
+    } 
 }
