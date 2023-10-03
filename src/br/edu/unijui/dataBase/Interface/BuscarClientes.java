@@ -55,6 +55,7 @@ public class BuscarClientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable);
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setText("Buscar Clientes");
         jButton1.setName("btnExecutar"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -65,7 +66,8 @@ public class BuscarClientes extends javax.swing.JFrame {
 
         tfNome.setName(""); // NOI18N
 
-        novoClienteButton.setText("Novo Cliente");
+        novoClienteButton.setBackground(new java.awt.Color(204, 255, 204));
+        novoClienteButton.setText("Novo cliente");
         novoClienteButton.setName("btnExecutar"); // NOI18N
         novoClienteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,15 +79,17 @@ public class BuscarClientes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(novoClienteButton)
-                .addGap(12, 12, 12))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(novoClienteButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

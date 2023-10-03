@@ -42,6 +42,8 @@ public class ListaQuartos extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jtQuartos);
 
+        jbCriarQuarto.setBackground(new java.awt.Color(204, 255, 204));
+        jbCriarQuarto.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jbCriarQuarto.setText("Criar novo");
         jbCriarQuarto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -57,6 +57,8 @@ public class CadastroCliente extends javax.swing.JPanel {
             }
         });
 
+        salvarCliente.setBackground(new java.awt.Color(204, 255, 204));
+        salvarCliente.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         salvarCliente.setText("Salvar");
         salvarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -64,6 +66,8 @@ public class CadastroCliente extends javax.swing.JPanel {
             }
         });
 
+        cancelarCliente.setBackground(new java.awt.Color(204, 204, 204));
+        cancelarCliente.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         cancelarCliente.setText("Cancelar");
         cancelarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
