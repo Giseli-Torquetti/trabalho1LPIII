@@ -7,13 +7,17 @@ import br.edu.unijui.dataBase.Models.Cliente;
 import br.edu.unijui.dataBase.Models.Quarto;
 import java.awt.Window;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class Reserva extends javax.swing.JPanel {
@@ -22,6 +26,9 @@ public class Reserva extends javax.swing.JPanel {
         initComponents();
         buscarClientes();
         buscarQuartos();
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        checkin.setText(dateFormat.format(date));
     }
 
     public void buscarClientes() {
@@ -88,6 +95,7 @@ public class Reserva extends javax.swing.JPanel {
 
         checkout.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
+        checkin.setEditable(false);
         checkin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         salvarReserva.setBackground(new java.awt.Color(204, 255, 204));
@@ -163,11 +171,19 @@ public class Reserva extends javax.swing.JPanel {
         try {
             checkinDate = formato.parse(checkin.getText());
             checkoutDate = formato.parse(checkout.getText());
+            if (checkoutDate.before(checkinDate)) {
+                JOptionPane.showMessageDialog(this, "Data de checkout não pode ser antes da data de checkin.");
+                return;
+            }
         } catch (ParseException ex) {
             Logger.getLogger(Reserva.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         ReservaDAO.cadastroReserva(quarto, cliente, checkinDate, checkoutDate);
+        long diffInMillies = Math.abs(checkoutDate.getTime() - checkinDate.getTime());
+        int diff = (int) TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        double precoTotal = diff * quarto.getPreco();
+        JOptionPane.showMessageDialog(this, "Sucesso! Valor total para" + (String.valueOf(diff)) + " dias = R$ " + (String.valueOf(precoTotal)));
 
         JComponent comp = (JComponent) evt.getSource();
         Window win = SwingUtilities.getWindowAncestor(comp);

@@ -132,7 +132,7 @@ public class QuartoDAO {
             return new ArrayList<>();
         }
 
-        PreparedStatement pstmt = db.getConnection().prepareStatement("SELECT * FROM QUARTOS");
+        PreparedStatement pstmt = db.getConnection().prepareStatement("select * from quartos where id not in (select quartos_id from reservas where curdate() between checkin and checkout)");
 
         ResultSet resultset = pstmt.executeQuery();
         System.out.println(resultset);
