@@ -68,11 +68,11 @@ public class EditarCliente extends javax.swing.JPanel {
         jLabel1.setText("Editar cadastro de cliente");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Nome");
         jLabel2.setToolTipText("");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel3.setText("Email:");
+        jLabel3.setText("Email");
         jLabel3.setToolTipText("");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -91,6 +91,11 @@ public class EditarCliente extends javax.swing.JPanel {
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -187,6 +192,10 @@ public class EditarCliente extends javax.swing.JPanel {
     private void telefoneClienteEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneClienteEditarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_telefoneClienteEditarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

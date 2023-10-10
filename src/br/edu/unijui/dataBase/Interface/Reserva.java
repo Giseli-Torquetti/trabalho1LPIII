@@ -183,8 +183,9 @@ public class Reserva extends javax.swing.JPanel {
         long diffInMillies = Math.abs(checkoutDate.getTime() - checkinDate.getTime());
         int diff = (int) TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
         double precoTotal = diff * quarto.getPreco();
-        JOptionPane.showMessageDialog(this, "Sucesso! Valor total para" + (String.valueOf(diff)) + " dias = R$ " + (String.valueOf(precoTotal)));
+        JOptionPane.showMessageDialog(this, "Sucesso! Valor total para " + (String.valueOf(diff)) + " dias = R$ " + (String.valueOf(precoTotal)));
 
+        
         JComponent comp = (JComponent) evt.getSource();
         Window win = SwingUtilities.getWindowAncestor(comp);
         win.dispose();
