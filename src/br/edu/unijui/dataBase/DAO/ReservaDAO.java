@@ -20,35 +20,34 @@ import java.util.Date;
  * @author gisel
  */
 public class ReservaDAO {
-    
-    public static void cadastroReserva(Quarto quarto, Cliente cliente, Date checkinDate, Date checkoutDate){
-        try{
-            DataBase db = new DataBase();
-            
-            Connection connection = db.getConnection();
-            
-            if(connection == null) return;
-            
-            connection.setAutoCommit(false);
-            
-            PreparedStatement pstmt = connection.prepareStatement("insert into reservas (quartos_id, clientes_id, checkin, checkout) values (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, quarto.getId());
-            pstmt.setInt(2, cliente.getId());          
-            pstmt.setDate(3, new java.sql.Date(checkinDate.getTime()));           
-            pstmt.setDate(4, new java.sql.Date(checkoutDate.getTime()));
-            System.out.println(pstmt);
-            pstmt.executeUpdate();
-             
-            ResultSet resultSet = pstmt.getGeneratedKeys();
-            if (!resultSet.next()) return;
 
-            connection.commit();
-            pstmt.close();
-            db.close();   
-            
-        }catch (SQLException ex) {
-           System.out.println("Não foi possivel finalizar a reserva"); 
+    public static void cadastroReserva(Quarto quarto, Cliente cliente, Date checkinDate, Date checkoutDate) throws SQLException {
+
+        DataBase db = new DataBase();
+
+        Connection connection = db.getConnection();
+
+        if (connection == null) {
+            return;
         }
+
+        connection.setAutoCommit(false);
+
+        PreparedStatement pstmt = connection.prepareStatement("insert into reservas (quartos_id, clientes_id, checkin, checkout) values (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        pstmt.setInt(1, quarto.getId());
+        pstmt.setInt(2, cliente.getId());
+        pstmt.setDate(3, new java.sql.Date(checkinDate.getTime()));
+        pstmt.setDate(4, new java.sql.Date(checkoutDate.getTime()));
+        pstmt.executeUpdate();
+
+        ResultSet resultSet = pstmt.getGeneratedKeys();
+        if (!resultSet.next()) {
+            return;
+        }
+
+        connection.commit();
+        pstmt.close();
+        db.close();
     }
-    
+
 }

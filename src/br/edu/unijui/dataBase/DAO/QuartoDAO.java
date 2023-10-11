@@ -59,32 +59,40 @@ public class QuartoDAO {
             return;
         }
 
-        PreparedStatement pstmt;
+        PreparedStatement pstmt = null;
         connection.setAutoCommit(false);
 
-        if (criarTipo) {
-            pstmt = connection.prepareStatement("insert into tipo_quartos (descricao) values (?)", Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, descricaoTipo);
+        try {
+            if (criarTipo) {
+                pstmt = connection.prepareStatement("insert into tipo_quartos (descricao) values (?)", Statement.RETURN_GENERATED_KEYS);
+                pstmt.setString(1, descricaoTipo);
 
-            pstmt.executeUpdate();
+                pstmt.executeUpdate();
 
-            ResultSet resultSet = pstmt.getGeneratedKeys();
-            if (!resultSet.next()) {
-                return;
+                ResultSet resultSet = pstmt.getGeneratedKeys();
+                if (!resultSet.next()) {
+                    return;
+                }
+
+                tipo = resultSet.getInt(1);
             }
 
-            tipo = resultSet.getInt(1);
+            pstmt = connection.prepareStatement("insert into quartos (numero, preco_diaria, tipo_quartos_id) values (?,?,?)");
+            pstmt.setString(1, numero);
+            pstmt.setDouble(2, preco);
+            pstmt.setInt(3, tipo);
+            pstmt.executeUpdate();
+
+            connection.commit();
+        } catch (Exception ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(true);
+            pstmt.close();
+            db.close();
         }
 
-        pstmt = connection.prepareStatement("insert into quartos (numero, preco_diaria, tipo_quartos_id) values (?,?,?)");
-        pstmt.setString(1, numero);
-        pstmt.setDouble(2, preco);
-        pstmt.setInt(3, tipo);
-        pstmt.executeUpdate();
-
-        connection.commit();
-        pstmt.close();
-        db.close();
     }
 
     public static void AlterarQuarto(int idQuarto, String numero, double preco, int tipo, String descricaoTipo, boolean criarTipo) throws SQLException {
@@ -94,33 +102,40 @@ public class QuartoDAO {
             return;
         }
 
-        PreparedStatement pstmt;
+        PreparedStatement pstmt = null;
         connection.setAutoCommit(false);
 
-        if (criarTipo) {
-            pstmt = connection.prepareStatement("insert into tipo_quartos (descricao) values (?)", Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, descricaoTipo);
+        try {
+            if (criarTipo) {
+                pstmt = connection.prepareStatement("insert into tipo_quartos (descricao) values (?)", Statement.RETURN_GENERATED_KEYS);
+                pstmt.setString(1, descricaoTipo);
 
-            pstmt.executeUpdate();
+                pstmt.executeUpdate();
 
-            ResultSet resultSet = pstmt.getGeneratedKeys();
-            if (!resultSet.next()) {
-                return;
+                ResultSet resultSet = pstmt.getGeneratedKeys();
+                if (!resultSet.next()) {
+                    return;
+                }
+
+                tipo = resultSet.getInt(1);
             }
 
-            tipo = resultSet.getInt(1);
+            pstmt = connection.prepareStatement("update quartos set numero = ?, preco_diaria = ?, tipo_quartos_id = ? where id = ?");
+            pstmt.setString(1, numero);
+            pstmt.setDouble(2, preco);
+            pstmt.setInt(3, tipo);
+            pstmt.setInt(4, idQuarto);
+            pstmt.executeUpdate();
+
+            connection.commit();
+        } catch (Exception ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(true);
+            pstmt.close();
+            db.close();
         }
-
-        pstmt = connection.prepareStatement("update quartos set numero = ?, preco_diaria = ?, tipo_quartos_id = ? where id = ?");
-        pstmt.setString(1, numero);
-        pstmt.setDouble(2, preco);
-        pstmt.setInt(3, tipo);
-        pstmt.setInt(4, idQuarto);
-        pstmt.executeUpdate();
-
-        connection.commit();
-        pstmt.close();
-        db.close();
     }
 
     public static ArrayList<Quarto> BuscaQuartosCB() throws SQLException {
@@ -135,7 +150,6 @@ public class QuartoDAO {
         PreparedStatement pstmt = db.getConnection().prepareStatement("select * from quartos where id not in (select quartos_id from reservas where curdate() between checkin and checkout)");
 
         ResultSet resultset = pstmt.executeQuery();
-        System.out.println(resultset);
 
         while (resultset.next()) {
             Quarto quarto = new Quarto();
@@ -145,7 +159,6 @@ public class QuartoDAO {
             quarto.setTipo(resultset.getInt("tipo_quartos_id"));
             quartos.add(quarto);
         }
-        System.out.println(quartos);
         resultset.close();
         pstmt.close();
         db.close();

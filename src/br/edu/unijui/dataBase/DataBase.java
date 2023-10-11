@@ -15,7 +15,7 @@ public class DataBase {
     private final String DATABASE_URL = "jdbc:mysql://localhost:3306/hotel";
     static final String USERNAME = "root";
     
-    static final String PASSWORD = "root";
+    static final String PASSWORD = "admin";
 
     public DataBase(String url, String userName, String password) throws SQLException {
         this.url = url;
