@@ -6,18 +6,17 @@ package br.edu.unijui.dataBase.Interface;
 
 import br.edu.unijui.dataBase.DAO.ClienteDAO;
 import br.edu.unijui.dataBase.Models.Cliente;
-import javax.swing.JFrame;
+import br.edu.unijui.logging.HotelLogger;
+import java.sql.SQLException;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
  * @author gisel
  */
 public class CadastroCliente extends javax.swing.JPanel {
-    /**
-     * Creates new form CadastroCliente
-     */
+
     public CadastroCliente() {
         initComponents();
     }
@@ -134,33 +133,40 @@ public class CadastroCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
         Cliente cliente = new Cliente();
         cliente.setNome(nomeCliente.getText());
-        cliente.setEmail(emailCliente.getText());      
+        cliente.setEmail(emailCliente.getText());
         cliente.setTelefone(telefoneCliente.getText());
         if (!cliente.getNome().isEmpty() && !cliente.getEmail().isEmpty() && !cliente.getTelefone().isEmpty()) {
-            ClienteDAO.cadastroCliente(cliente);
-            JOptionPane.showMessageDialog(null,
-                "Cliente cadastrado com sucesso!",
-                "Sucesso",
-                JOptionPane.INFORMATION_MESSAGE
-            );  
-            nomeCliente.setText("");        
-            emailCliente.setText("");        
-            telefoneCliente.setText("");
+            HotelLogger.log(Level.INFO,
+                    "Criando cliente: nome: " + cliente.getNome() + ", email: " + cliente.getEmail() + ", telefone: " + cliente.getTelefone(),
+                    "Clientes.log");
+            try {
+                ClienteDAO.cadastroCliente(cliente);
+                JOptionPane.showMessageDialog(null,
+                        "Cliente cadastrado com sucesso!",
+                        "Sucesso",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                nomeCliente.setText("");
+                emailCliente.setText("");
+                telefoneCliente.setText("");
+            } catch (SQLException ex) {
+                HotelLogger.log(Level.SEVERE, "Erro ao criar cliente: " + ex.getMessage(), "Clientes.log");
+            }
         } else {
             JOptionPane.showMessageDialog(null,
-                "Preencha todos os campos do cadastro",
-                "Erro",
-                JOptionPane.ERROR_MESSAGE
-            );  
+                    "Preencha todos os campos do cadastro",
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
-       
+
     }//GEN-LAST:event_salvarClienteMouseClicked
 
-       
+
     private void cancelarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarClienteMouseClicked
         // TODO add your handling code here:
-        nomeCliente.setText("");        
-        emailCliente.setText("");        
+        nomeCliente.setText("");
+        emailCliente.setText("");
         telefoneCliente.setText("");
     }//GEN-LAST:event_cancelarClienteMouseClicked
 

@@ -1,31 +1,34 @@
-package br.edu.unijui.dataBase.Interface;;
+package br.edu.unijui.dataBase.Interface;
 
+import java.util.logging.Level;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import br.edu.unijui.dataBase.DataBase;
 import br.edu.unijui.dataBase.Models.Cliente;
 import br.edu.unijui.dataBase.Models.ResultSetTableModel;
+import br.edu.unijui.logging.HotelLogger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 public class BuscarClientes extends javax.swing.JFrame {
 
     static private ResultSetTableModel tableModel;
     DataBase db;
-    
     private Cliente clienteSelecionado;
 
-    public BuscarClientes() throws SQLException, ClassNotFoundException {
-        this.db = new DataBase();
-        //define os nomes das colunas da tabela 
-        String[] colunas = new String[]{"Cod. Cliente","Nome", "Email", "Telefone"};
-        tableModel = new ResultSetTableModel(colunas);
-        initComponents();
-        setVisible(true);
-        initComponents();
+    public BuscarClientes() {
+        try {
+            this.db = new DataBase();
+            String[] colunas = new String[]{"Cod. Cliente", "Nome", "Email", "Telefone"};
+            tableModel = new ResultSetTableModel(colunas);
+            initComponents();
+            setVisible(true);
+            initComponents();
+        } catch (SQLException ex) {
+            HotelLogger.log(Level.SEVERE, "Erro ao acessar banco de dados: " + ex.getMessage(), "Clientes.log");
+        }
     }
 
     /**
@@ -109,36 +112,37 @@ public class BuscarClientes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            HotelLogger.log(Level.INFO, "Buscando clientes", "Clientes.log");
             // TODO add your handling code here:            
             PreparedStatement pstmt = db.getConnection().prepareStatement("select * from clientes where nome like ? order by nome", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            
+
             // Setando o valor ao parâmetro 
             if (tfNome.getText().length() > 0) {
-              pstmt.setString(1, "%"+tfNome.getText()+"%");
-            }else{
-              pstmt.setString(1, "%");  
+                pstmt.setString(1, "%" + tfNome.getText() + "%");
+            } else {
+                pstmt.setString(1, "%");
             }
 
             // Executando a consulta
-            ResultSet resultSet = pstmt.executeQuery(); 
+            ResultSet resultSet = pstmt.executeQuery();
             tableModel.setResultSet(resultSet);
         } catch (SQLException ex) {
-            System.out.println(ex);
+            HotelLogger.log(Level.SEVERE, "Erro ao buscar clientes: " + ex.getMessage(), "Clientes.log");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
         // TODO add your handling code here:
-       
+
         if (evt.getClickCount() == 2) {
             JTable target = (JTable) evt.getSource();
             int row = target.getSelectedRow();
-            Cliente clienteSelecionado = new Cliente();
-            clienteSelecionado.setId((int)target.getValueAt(row, 0));
-            clienteSelecionado.setNome(target.getValueAt(row, 1).toString());           
-            clienteSelecionado.setEmail(target.getValueAt(row, 2).toString());            
+            clienteSelecionado = new Cliente();
+            clienteSelecionado.setId((int) target.getValueAt(row, 0));
+            clienteSelecionado.setNome(target.getValueAt(row, 1).toString());
+            clienteSelecionado.setEmail(target.getValueAt(row, 2).toString());
             clienteSelecionado.setTelefone(target.getValueAt(row, 3).toString());
-            
+
             // Abra a tela de edição e passe o cliente selecionado como argumento
             EditarCliente editarCliente = new EditarCliente(clienteSelecionado);
 
@@ -147,7 +151,7 @@ public class BuscarClientes extends javax.swing.JFrame {
             frame.setSize(400, 380);
             frame.setContentPane(editarCliente);
             frame.setVisible(true);
-           
+
         }
     }//GEN-LAST:event_jTableMouseClicked
 
@@ -156,17 +160,10 @@ public class BuscarClientes extends javax.swing.JFrame {
         JFrame frame = new JFrame("CadastroCliente");
         frame.setSize(400, 380);
         JPanel panel = new CadastroCliente();
-        frame.setContentPane(panel);      
+        frame.setContentPane(panel);
         frame.setVisible(true);
     }//GEN-LAST:event_novoClienteButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
-    public Cliente getClienteSelecionado() {
-        return clienteSelecionado;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

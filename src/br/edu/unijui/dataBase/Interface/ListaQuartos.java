@@ -2,7 +2,11 @@ package br.edu.unijui.dataBase.Interface;
 
 import br.edu.unijui.dataBase.DAO.QuartoDAO;
 import br.edu.unijui.dataBase.Models.QuartosTableModel;
+import br.edu.unijui.logging.HotelLogger;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -18,11 +22,12 @@ public class ListaQuartos extends javax.swing.JPanel {
 
     public void popularTabela() {
         try {
+            HotelLogger.log(Level.INFO, "Buscando lista de quartos", "Quartos.log");
             ResultSet quartos = QuartoDAO.BuscaQuartos();
             tableModel.setResultSet(quartos);
             jtQuartos.setModel(tableModel);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            HotelLogger.log(Level.SEVERE, "Erro ao buscar quartos: " + ex.getMessage(), "Quartos.log");
         }
     }
 

@@ -6,12 +6,10 @@ package br.edu.unijui.dataBase.Interface;
 
 import br.edu.unijui.dataBase.DAO.ClienteDAO;
 import br.edu.unijui.dataBase.Models.Cliente;
+import br.edu.unijui.logging.HotelLogger;
 import java.sql.SQLException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
@@ -20,11 +18,11 @@ import javax.swing.JPanel;
 public class EditarCliente extends javax.swing.JPanel {
 
     private Cliente clienteSelecionado;
-   
+
     /**
      * Creates new form EditarCliente
+     * @param cliente
      */
-
 
     public EditarCliente(Cliente cliente) {
         this.clienteSelecionado = cliente;
@@ -34,12 +32,13 @@ public class EditarCliente extends javax.swing.JPanel {
 
     private void preencherCampos() {
         if (clienteSelecionado != null) {
-            idClienteEditar.setText(Integer.toString(clienteSelecionado.getId()));          
+            idClienteEditar.setText(Integer.toString(clienteSelecionado.getId()));
             nomeClienteEditar.setText(clienteSelecionado.getNome());
             emailClienteEditar.setText(clienteSelecionado.getEmail());
             telefoneClienteEditar.setText(clienteSelecionado.getTelefone());
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -168,25 +167,32 @@ public class EditarCliente extends javax.swing.JPanel {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         Cliente cliente = new Cliente();
-        cliente.setId(Integer.parseInt(idClienteEditar.getText()));       
+        cliente.setId(Integer.parseInt(idClienteEditar.getText()));
         cliente.setNome(nomeClienteEditar.getText());
-        cliente.setEmail(emailClienteEditar.getText());      
+        cliente.setEmail(emailClienteEditar.getText());
         cliente.setTelefone(telefoneClienteEditar.getText());
         if (!cliente.getNome().isEmpty() && !cliente.getEmail().isEmpty() && !cliente.getTelefone().isEmpty()) {
-            ClienteDAO.editarCadastroCliente(cliente);
+            HotelLogger.log(Level.INFO,
+                    "Editando cliente: nome: " + cliente.getNome() + ", email: " + cliente.getEmail() + ", telefone: " + cliente.getTelefone(),
+                    "Clientes.log");
+            try {
+                ClienteDAO.editarCadastroCliente(cliente);
+            } catch (SQLException ex) {
+                HotelLogger.log(Level.SEVERE, "Erro ao edtiar cliente: " + ex.getMessage(), "Clientes.log");
+            }
             JOptionPane.showMessageDialog(null,
-                "Cliente editado com sucesso!",
-                "Sucesso",
-                JOptionPane.INFORMATION_MESSAGE
-            );  
+                    "Cliente editado com sucesso!",
+                    "Sucesso",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
         } else {
             JOptionPane.showMessageDialog(null,
-                "Preencha todos os campos do cadastro",
-                "Erro",
-                JOptionPane.ERROR_MESSAGE
-            );  
+                    "Preencha todos os campos do cadastro",
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
-        
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void telefoneClienteEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneClienteEditarActionPerformed

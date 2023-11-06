@@ -5,6 +5,7 @@ import br.edu.unijui.dataBase.DAO.QuartoDAO;
 import br.edu.unijui.dataBase.DAO.ReservaDAO;
 import br.edu.unijui.dataBase.Models.Cliente;
 import br.edu.unijui.dataBase.Models.Quarto;
+import br.edu.unijui.logging.HotelLogger;
 import java.awt.Window;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -176,16 +177,26 @@ public class Reserva extends javax.swing.JPanel {
                 return;
             }
         } catch (ParseException ex) {
-            Logger.getLogger(Reserva.class.getName()).log(Level.SEVERE, null, ex);
+            HotelLogger.log(Level.SEVERE,
+                    "Erro ao converter data: " + ex.getMessage(),
+                    "Reservas.log");
         }
 
-        ReservaDAO.cadastroReserva(quarto, cliente, checkinDate, checkoutDate);
+        try {
+            HotelLogger.log(Level.INFO,
+                    "Criando reserva: quarto: " + quarto.getId() + ", cliente: " + cliente.getId(),
+                    "Reservas.log");
+            ReservaDAO.cadastroReserva(quarto, cliente, checkinDate, checkoutDate);
+        } catch (SQLException ex) {
+            HotelLogger.log(Level.SEVERE,
+                    "Erro ao criar reserva: " + ex.getMessage(),
+                    "Reservas.log");
+        }
         long diffInMillies = Math.abs(checkoutDate.getTime() - checkinDate.getTime());
         int diff = (int) TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
         double precoTotal = diff * quarto.getPreco();
         JOptionPane.showMessageDialog(this, "Sucesso! Valor total para " + (String.valueOf(diff)) + " dias = R$ " + (String.valueOf(precoTotal)));
 
-        
         JComponent comp = (JComponent) evt.getSource();
         Window win = SwingUtilities.getWindowAncestor(comp);
         win.dispose();

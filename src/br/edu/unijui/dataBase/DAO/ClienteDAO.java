@@ -62,7 +62,6 @@ public class ClienteDAO {
             return;
         }
 
-        connection.commit();
         pstmt.close();
         db.close();
     }

@@ -4,9 +4,6 @@
  */
 package br.edu.unijui.dataBase.Interface;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -121,11 +118,7 @@ public class Home extends javax.swing.JPanel {
 
     private void ClientesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesButtonActionPerformed
         // TODO add your handling code here:
-          try {
-            new BuscarClientes(); 
-         } catch (SQLException | ClassNotFoundException ex) {
-             Logger.getLogger(EditarCliente.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        new BuscarClientes();
 
     }//GEN-LAST:event_ClientesButtonActionPerformed
 

@@ -4,8 +4,14 @@ import br.edu.unijui.dataBase.DAO.QuartoDAO;
 import br.edu.unijui.dataBase.DAO.TipoQuartoDAO;
 import br.edu.unijui.dataBase.Models.Quarto;
 import br.edu.unijui.dataBase.Models.TipoQuarto;
+import br.edu.unijui.logging.HotelLogger;
+import java.awt.HeadlessException;
 import java.awt.Window;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -32,6 +38,7 @@ public class QuartoForm extends javax.swing.JPanel {
         try {
             ListarTipos();
             TipoQuarto tipo = new TipoQuarto();
+            HotelLogger.log(Level.INFO, "Buscando dados do quarto: " + idQuarto, "Quartos.log");
             Quarto quarto = QuartoDAO.BuscarPorId(idQuarto);
             for (TipoQuarto t : tipos) {
                 if (t.getId() == quarto.getTipo()) {
@@ -43,8 +50,8 @@ public class QuartoForm extends javax.swing.JPanel {
             jtPrecoDiaria.setText(String.valueOf(quarto.getPreco()));
             jcTipoQuarto.setSelectedItem(tipo);
             SelecionarTipo(true);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        } catch (SQLException ex) {
+            HotelLogger.log(Level.SEVERE, "Erro ao buscar dados do quarto " + idQuarto + ": " + ex.getMessage(), "Quartos.log");
         }
     }
 
@@ -60,12 +67,13 @@ public class QuartoForm extends javax.swing.JPanel {
 
     private void ListarTipos() {
         try {
+            HotelLogger.log(Level.INFO, "Buscando tipos de quartos", "Quartos.log");
             tipos = TipoQuartoDAO.BuscaQuartos();
             for (TipoQuarto tipo : tipos) {
                 jcTipoQuarto.addItem(tipo);
             }
-        } catch (Exception ex) {
-
+        } catch (SQLException ex) {
+            HotelLogger.log(Level.SEVERE, "Erro ao buscar tipos de quartos: " + ex.getMessage(), "Quartos.log");
         }
     }
 
@@ -211,8 +219,15 @@ public class QuartoForm extends javax.swing.JPanel {
 
         try {
             if (idQuarto == 0) {
+
+                HotelLogger.log(Level.INFO,
+                        "Criando quarto: numero: " + numero + ", preço: " + preco + ", tipo: " + (tipoQuarto == 0 ? descTipo : tipoQuarto),
+                        "Quartos.log");
                 QuartoDAO.CriarQuarto(numero, preco, tipoQuarto, descTipo, this.criarNovoTipo);
             } else {
+                HotelLogger.log(Level.INFO,
+                        "Alterando quarto: id: " + idQuarto + ", numero: " + numero + ", preço: " + preco + ", tipo: " + (tipoQuarto == 0 ? descTipo : tipoQuarto),
+                        "Quartos.log");
                 QuartoDAO.AlterarQuarto(idQuarto, numero, preco, tipoQuarto, descTipo, this.criarNovoTipo);
             }
             JOptionPane.showMessageDialog(this, "Quarto salvo");
@@ -220,7 +235,12 @@ public class QuartoForm extends javax.swing.JPanel {
             JComponent comp = (JComponent) evt.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
             win.dispose();
-        } catch (Exception ex) {
+        } catch (HeadlessException | SQLException ex) {
+            if (idQuarto == 0) {
+                HotelLogger.log(Level.SEVERE, "Erro ao criar quarto: " + ex.getMessage(), "Quartos.log");
+            } else {
+                HotelLogger.log(Level.SEVERE, "Erro ao alterar quarto: " + ex.getMessage(), "Quartos.log");
+            }
             JOptionPane.showMessageDialog(this, "Erro ao salvar dados");
         }
     }//GEN-LAST:event_jbSalvarQuartoActionPerformed
