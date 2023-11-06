@@ -5,6 +5,7 @@ import br.edu.unijui.dataBase.DAO.TipoQuartoDAO;
 import br.edu.unijui.dataBase.Models.Quarto;
 import br.edu.unijui.dataBase.Models.TipoQuarto;
 import br.edu.unijui.logging.HotelLogger;
+import br.edu.unijui.xml.ManipuladorXML;
 import java.awt.HeadlessException;
 import java.awt.Window;
 import java.sql.SQLException;
@@ -15,6 +16,10 @@ import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import org.w3c.dom.Document;
 
 public class QuartoForm extends javax.swing.JPanel {
 
@@ -28,7 +33,16 @@ public class QuartoForm extends javax.swing.JPanel {
         this.id = 0;
         initComponents();
         ListarTipos();
-        SelecionarTipo(true);
+        
+        try {
+            
+            Document doc = ManipuladorXML.readXmlFile("./config.xml");
+            XPathExpression e1 = ManipuladorXML .getXPathExpression("//configuracoes/selecionarTipo");
+            boolean selecionarTipo = Boolean.parseBoolean((String) e1.evaluate(doc, XPathConstants.STRING));
+            SelecionarTipo(selecionarTipo);
+        } catch (XPathExpressionException ex) {
+            HotelLogger.log(Level.SEVERE, "Erro ao ler XML de configurações :" + ex.getMessage(), "Quartos.log");
+        }
     }
 
     public QuartoForm(int idQuarto, ListaQuartos listaQuartos) {

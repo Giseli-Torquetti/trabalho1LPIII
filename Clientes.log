@@ -38,3 +38,19 @@
   <message>Criando cliente: nome: Giseli teste, email: teste@teste, telefone: 555555</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-11-06T00:17:43.321406200Z</date>
+  <millis>1699229863321</millis>
+  <nanos>406200</nanos>
+  <sequence>0</sequence>
+  <logger>br.edu.unijui.logging</logger>
+  <level>INFO</level>
+  <class>br.edu.unijui.logging.HotelLogger</class>
+  <method>log</method>
+  <thread>33</thread>
+  <message>Buscando clientes</message>
+</record>
+</log>
