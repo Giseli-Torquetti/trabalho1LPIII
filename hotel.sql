@@ -69,6 +69,37 @@ INSERT INTO clientes (id, nome, email, telefone) VALUES (8, 'Mariana Oliveira', 
 INSERT INTO clientes (id, nome, email, telefone) VALUES (9, 'Rafael Rodrigues', 'rafael@example.com', '(99) 4444-4444');
 INSERT INTO clientes (id, nome, email, telefone) VALUES (10, 'Carolina Santos', 'carolina@example.com', '(10) 6666-6666');
 
+ALTER TABLE clientes ADD dt_cadastro date
+
+ALTER TABLE quartos ADD dt_cadastro date
+
+UPDATE clientes SET dt_cadastro = '2023-10-01' WHERE id = 1;
+UPDATE clientes SET dt_cadastro = '2023-10-16' WHERE id = 2;
+UPDATE clientes SET dt_cadastro = '2023-10-03' WHERE id = 3;
+UPDATE clientes SET dt_cadastro = '2023-10-18' WHERE id = 4;
+UPDATE clientes SET dt_cadastro = '2023-10-05' WHERE id = 5;
+UPDATE clientes SET dt_cadastro = '2023-10-21' WHERE id = 6;
+UPDATE clientes SET dt_cadastro = '2023-10-07' WHERE id = 7;
+UPDATE clientes SET dt_cadastro = '2023-10-24' WHERE id = 8;
+UPDATE clientes SET dt_cadastro = '2023-10-10' WHERE id = 9;
+UPDATE clientes SET dt_cadastro = '2023-10-27' WHERE id = 10;
+
+UPDATE quartos SET dt_cadastro = '2023-10-01' WHERE id = 1;
+UPDATE quartos SET dt_cadastro = '2023-10-16' WHERE id = 2;
+UPDATE quartos SET dt_cadastro = '2023-10-03' WHERE id = 3;
+UPDATE quartos SET dt_cadastro = '2023-10-18' WHERE id = 4;
+UPDATE quartos SET dt_cadastro = '2023-10-05' WHERE id = 5;
+UPDATE quartos SET dt_cadastro = '2023-10-21' WHERE id = 6;
+UPDATE quartos SET dt_cadastro = '2023-10-07' WHERE id = 7;
+UPDATE quartos SET dt_cadastro = '2023-10-24' WHERE id = 8;
+UPDATE quartos SET dt_cadastro = '2023-10-10' WHERE id = 9;
+UPDATE quartos SET dt_cadastro = '2023-10-27' WHERE id = 10;
+UPDATE quartos SET dt_cadastro = '2023-10-11' WHERE id = 11;
+UPDATE quartos SET dt_cadastro = '2023-10-12' WHERE id = 12;
+UPDATE quartos SET dt_cadastro = '2023-10-13' WHERE id = 13;
+UPDATE quartos SET dt_cadastro = '2023-10-14' WHERE id = 14;
+
+
 
 
 
