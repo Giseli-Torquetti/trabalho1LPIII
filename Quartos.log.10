@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-11-06T00:12:42.409623200Z</date>
+  <millis>1699229562409</millis>
+  <nanos>623200</nanos>
+  <sequence>11</sequence>
+  <logger>br.edu.unijui.logging</logger>
+  <level>INFO</level>
+  <class>br.edu.unijui.logging.HotelLogger</class>
+  <method>log</method>
+  <thread>19</thread>
+  <message>Buscando lista de quartos</message>
+</record>
+</log>

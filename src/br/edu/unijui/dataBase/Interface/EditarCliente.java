@@ -9,6 +9,7 @@ import br.edu.unijui.dataBase.Models.Cliente;
 import br.edu.unijui.logging.HotelLogger;
 import java.sql.SQLException;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -179,6 +180,11 @@ public class EditarCliente extends javax.swing.JPanel {
                 ClienteDAO.editarCadastroCliente(cliente);
             } catch (SQLException ex) {
                 HotelLogger.log(Level.SEVERE, "Erro ao edtiar cliente: " + ex.getMessage(), "Clientes.log");
+            }
+            try {
+                ClienteDAO.editarCadastroCliente(cliente);
+            } catch (SQLException ex) {
+                Logger.getLogger(EditarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
             JOptionPane.showMessageDialog(null,
                     "Cliente editado com sucesso!",

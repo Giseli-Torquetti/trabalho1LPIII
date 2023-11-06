@@ -44,6 +44,7 @@ public class Home extends javax.swing.JPanel {
         reservasButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        reservasButton1 = new javax.swing.JButton();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -51,6 +52,7 @@ public class Home extends javax.swing.JPanel {
         ClientesButton.setBackground(new java.awt.Color(204, 255, 204));
         ClientesButton.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         ClientesButton.setText("Clientes");
+        ClientesButton.setFocusable(false);
         ClientesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClientesButtonActionPerformed(evt);
@@ -60,6 +62,7 @@ public class Home extends javax.swing.JPanel {
         quartosButton.setBackground(new java.awt.Color(204, 255, 204));
         quartosButton.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         quartosButton.setText("Quartos");
+        quartosButton.setFocusPainted(false);
         quartosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quartosButtonActionPerformed(evt);
@@ -69,6 +72,8 @@ public class Home extends javax.swing.JPanel {
         reservasButton.setBackground(new java.awt.Color(204, 255, 204));
         reservasButton.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         reservasButton.setText("Reservas");
+        reservasButton.setDefaultCapable(false);
+        reservasButton.setFocusPainted(false);
         reservasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reservasButtonActionPerformed(evt);
@@ -83,6 +88,16 @@ public class Home extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Área de gerenciamento do hotel");
 
+        reservasButton1.setBackground(new java.awt.Color(204, 255, 204));
+        reservasButton1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        reservasButton1.setText("Relatórios");
+        reservasButton1.setFocusPainted(false);
+        reservasButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservasButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,6 +105,7 @@ public class Home extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reservasButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(jLabel1))
@@ -112,7 +128,9 @@ public class Home extends javax.swing.JPanel {
                 .addComponent(quartosButton)
                 .addGap(18, 18, 18)
                 .addComponent(reservasButton)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(reservasButton1)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -140,6 +158,15 @@ public class Home extends javax.swing.JPanel {
         frame.setVisible(true);
     }//GEN-LAST:event_reservasButtonActionPerformed
 
+    private void reservasButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasButton1ActionPerformed
+        // TODO add your handling code here:
+        JFrame frame = new JFrame("Relatórios");
+        frame.setSize(400, 380);
+        JPanel panel = new Relatorio();
+        frame.setContentPane(panel);
+        frame.setVisible(true);
+    }//GEN-LAST:event_reservasButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ClientesButton;
@@ -148,5 +175,6 @@ public class Home extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton quartosButton;
     private javax.swing.JButton reservasButton;
+    private javax.swing.JButton reservasButton1;
     // End of variables declaration//GEN-END:variables
 }

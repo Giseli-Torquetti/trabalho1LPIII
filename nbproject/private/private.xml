@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/Carlos/Projects/Unijui/Linguagem/Trabalhos/trabalho1LPIII/src/br/edu/unijui/dataBase/Interface/Reserva.java</file>
             <file>file:/C:/Users/Carlos/Projects/Unijui/Linguagem/Trabalhos/trabalho1LPIII/src/br/edu/unijui/dataBase/Interface/CadastroCliente.java</file>
             <file>file:/C:/Users/Carlos/Projects/Unijui/Linguagem/Trabalhos/trabalho1LPIII/src/br/edu/unijui/dataBase/DAO/ClienteDAO.java</file>
             <file>file:/C:/Users/Carlos/Projects/Unijui/Linguagem/Trabalhos/trabalho1LPIII/src/br/edu/unijui/logging/HotelLogger.java</file>
+=======
+            <file>file:/C:/Users/gisel/Documents/Unijui/trabalho1LPIII/src/br/edu/unijui/dataBase/Interface/Reserva.java</file>
+            <file>file:/C:/Users/gisel/Documents/Unijui/trabalho1LPIII/src/br/edu/unijui/dataBase/Interface/Home.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

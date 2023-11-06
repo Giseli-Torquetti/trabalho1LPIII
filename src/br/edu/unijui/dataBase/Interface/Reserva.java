@@ -191,6 +191,11 @@ public class Reserva extends javax.swing.JPanel {
             HotelLogger.log(Level.SEVERE,
                     "Erro ao criar reserva: " + ex.getMessage(),
                     "Reservas.log");
+            try {
+                ReservaDAO.cadastroReserva(quarto, cliente, checkinDate, checkoutDate);
+            } catch (SQLException ex1) {
+                Logger.getLogger(Reserva.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         }
         long diffInMillies = Math.abs(checkoutDate.getTime() - checkinDate.getTime());
         int diff = (int) TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);

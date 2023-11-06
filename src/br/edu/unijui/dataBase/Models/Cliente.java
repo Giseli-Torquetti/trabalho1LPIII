@@ -4,6 +4,8 @@
  */
 package br.edu.unijui.dataBase.Models;
 
+import java.sql.Date;
+
 /**
  *
  * @author gisel
@@ -12,7 +14,9 @@ public class Cliente {
     private int id;
     private String nome;   
     private String email;    
-    private String telefone;
+    private String telefone;    
+    private Date dtCadastro;
+
 
     public int getId() {
         return id;
@@ -44,6 +48,14 @@ public class Cliente {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+    
+    public Date getDtCadastro() {
+        return dtCadastro;
+    }
+
+    public void setDtCadastro(Date dtCadastro) {
+        this.dtCadastro = dtCadastro;
     }
 
     @Override

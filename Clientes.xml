@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clientes>
+    <cliente>
+        <nome>João Silva</nome>
+        <email>joao@example.com</email>
+        <telefone>(11) 1234-5678</telefone>
+        <dtCadastro>2023-10-01</dtCadastro>
+    </cliente>
+    <cliente>
+        <nome>Pedro Oliveira</nome>
+        <email>pedro@example.com</email>
+        <telefone>(33) 5555-5555</telefone>
+        <dtCadastro>2023-10-03</dtCadastro>
+    </cliente>
+    <cliente>
+        <nome>Lucas Fernandes</nome>
+        <email>lucas@example.com</email>
+        <telefone>(55) 9999-9999</telefone>
+        <dtCadastro>2023-10-05</dtCadastro>
+    </cliente>
+    <cliente>
+        <nome>Fernando Costa teste</nome>
+        <email>fernando@example.com</email>
+        <telefone>(77) 2222-2222</telefone>
+        <dtCadastro>2023-10-07</dtCadastro>
+    </cliente>
+    <cliente>
+        <nome>Rafael Rodrigues</nome>
+        <email>rafael@example.com</email>
+        <telefone>(99) 4444-4444</telefone>
+        <dtCadastro>2023-10-10</dtCadastro>
+    </cliente>
+</clientes>
