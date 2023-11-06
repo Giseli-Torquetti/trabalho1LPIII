@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -48,6 +49,42 @@ public class ReservaDAO {
         connection.commit();
         pstmt.close();
         db.close();
+    }
+    
+    public static ArrayList<Reserva> buscarReservasEntreDatas(Date dtInical, Date dtFinal) throws SQLException {
+        DataBase db = new DataBase();
+
+        Connection connection = db.getConnection();
+
+        if (connection == null) {
+            return null;
+        }
+        
+         ArrayList<Reserva> reservas = new ArrayList();
+
+        connection.setAutoCommit(false);
+
+        PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM reservas WHERE checkin >= ? and checkout <= ? ", Statement.RETURN_GENERATED_KEYS);
+        pstmt.setDate(1, new java.sql.Date(dtInical.getTime()));        
+        pstmt.setDate(2, new java.sql.Date(dtFinal.getTime()));
+
+        
+        ResultSet resultset = pstmt.executeQuery();
+        while (resultset.next()) {
+            Reserva reserva = new Reserva();
+            reserva.setId(resultset.getInt("id"));
+            reserva.setQuarto(resultset.getInt("quartos_id"));
+            reserva.setCliente(resultset.getInt("clientes_id"));
+            reserva.setCheckin(resultset.getDate("checkin"));            
+            reserva.setCheckout(resultset.getDate("checkout"));
+
+            reservas.add(reserva);
+        }
+
+        connection.commit();
+        pstmt.close();
+        db.close();
+        return reservas;
     }
 
 }

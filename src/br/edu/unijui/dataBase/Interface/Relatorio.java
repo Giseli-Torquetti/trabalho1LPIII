@@ -7,6 +7,7 @@ package br.edu.unijui.dataBase.Interface;
 import br.edu.unijui.dataBase.DAO.ClienteDAO;
 import br.edu.unijui.dataBase.DAO.QuartoDAO;
 import br.edu.unijui.dataBase.DAO.RelatoriosDAO;
+import br.edu.unijui.dataBase.DAO.ReservaDAO;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -47,6 +48,7 @@ public class Relatorio extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel3.setText("Relatórios");
@@ -55,10 +57,17 @@ public class Relatorio extends javax.swing.JPanel {
 
         jLabel2.setText("Data final");
 
-        jButton1.setText("Gerar relatório");
+        jButton1.setText("Gerar relatório de clientes");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Gerar relatório de reservas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -77,12 +86,12 @@ public class Relatorio extends javax.swing.JPanel {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(dtInicio)
-                            .addComponent(dtFim, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(170, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(68, 68, 68))
+                            .addComponent(dtFim, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,10 +105,12 @@ public class Relatorio extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dtFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(44, 44, 44))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dtFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -113,23 +124,17 @@ public class Relatorio extends javax.swing.JPanel {
         } catch (ParseException ex) {
             Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
-        
-        System.out.println(dtInical);        
-        System.out.println(dtFinal);
 
         
         if (dtFinal.before(dtInical)) {
-            JOptionPane.showMessageDialog(this, "Data de checkout não pode ser antes da data de checkin.");
+            JOptionPane.showMessageDialog(this, "Data final não pode ser menor do que a data inicial.");
             return;
         }
 
         
         try {
             ArrayList clientes = ClienteDAO.buscaClienteEntreDatas(dtInical, dtFinal);
-            System.out.println(clientes);
             RelatoriosDAO.xmlClientes(clientes);
-            //QuartoDAO.buscaQuartosEntreDatas(dtInical, dtFinal);
         } catch (SQLException ex) {
             Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -137,11 +142,38 @@ public class Relatorio extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date dtInical = null;
+        Date dtFinal = null;
+        try {
+            dtInical = formato.parse(dtInicio.getText());
+            dtFinal = formato.parse(dtFim.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        if (dtFinal.before(dtInical)) {
+            JOptionPane.showMessageDialog(this, "Data final não pode ser menor do que a data inicial.");
+            return;
+        }
+
+        
+        try {
+            ArrayList reservas = ReservaDAO.buscarReservasEntreDatas(dtInical, dtFinal);
+            RelatoriosDAO.xmlReservas(reservas);
+        } catch (SQLException ex) {
+            Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField dtFim;
     private javax.swing.JTextField dtInicio;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

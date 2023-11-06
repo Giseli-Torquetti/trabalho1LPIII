@@ -1,33 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <clientes>
     <cliente>
-        <nome>João Silva</nome>
-        <email>joao@example.com</email>
-        <telefone>(11) 1234-5678</telefone>
-        <dtCadastro>2023-10-01</dtCadastro>
+        <nome>Maria Santos</nome>
+        <email>maria@example.com</email>
+        <telefone>(22) 9876-5432</telefone>
+        <dtCadastro>2023-10-16</dtCadastro>
     </cliente>
     <cliente>
-        <nome>Pedro Oliveira</nome>
-        <email>pedro@example.com</email>
-        <telefone>(33) 5555-5555</telefone>
-        <dtCadastro>2023-10-03</dtCadastro>
+        <nome>Ana Souza</nome>
+        <email>ana@example.com</email>
+        <telefone>(44) 7777-7777</telefone>
+        <dtCadastro>2023-10-18</dtCadastro>
     </cliente>
     <cliente>
-        <nome>Lucas Fernandes</nome>
-        <email>lucas@example.com</email>
-        <telefone>(55) 9999-9999</telefone>
-        <dtCadastro>2023-10-05</dtCadastro>
+        <nome>Isabela Lima II</nome>
+        <email>isabela@example.com</email>
+        <telefone>(66) 1111-1111</telefone>
+        <dtCadastro>2023-10-21</dtCadastro>
     </cliente>
     <cliente>
-        <nome>Fernando Costa teste</nome>
-        <email>fernando@example.com</email>
-        <telefone>(77) 2222-2222</telefone>
-        <dtCadastro>2023-10-07</dtCadastro>
+        <nome>Mariana Oliveira</nome>
+        <email>mariana@example.com</email>
+        <telefone>(88) 3333-3333</telefone>
+        <dtCadastro>2023-10-24</dtCadastro>
     </cliente>
     <cliente>
         <nome>Rafael Rodrigues</nome>
         <email>rafael@example.com</email>
         <telefone>(99) 4444-4444</telefone>
         <dtCadastro>2023-10-10</dtCadastro>
+    </cliente>
+    <cliente>
+        <nome>Carolina Santos teste</nome>
+        <email>carolina@example.com</email>
+        <telefone>(10) 6666-6666</telefone>
+        <dtCadastro>2023-10-27</dtCadastro>
+    </cliente>
+    <cliente>
+        <nome>teste</nome>
+        <email>teste</email>
+        <telefone>666666666</telefone>
+        <dtCadastro>2023-11-06</dtCadastro>
+    </cliente>
+    <cliente>
+        <nome>teste</nome>
+        <email>teste</email>
+        <telefone>666666666</telefone>
+        <dtCadastro>2023-11-06</dtCadastro>
     </cliente>
 </clientes>

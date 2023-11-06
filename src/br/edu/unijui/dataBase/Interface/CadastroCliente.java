@@ -9,10 +9,7 @@ import br.edu.unijui.dataBase.Models.Cliente;
 import br.edu.unijui.logging.HotelLogger;
 import java.sql.SQLException;
 import java.util.logging.Level;
-import java.sql.SQLException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -156,19 +153,6 @@ public class CadastroCliente extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 HotelLogger.log(Level.SEVERE, "Erro ao criar cliente: " + ex.getMessage(), "Clientes.log");
             }
-            try {
-                ClienteDAO.cadastroCliente(cliente);
-            } catch (SQLException ex) {
-                Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            JOptionPane.showMessageDialog(null,
-                "Cliente cadastrado com sucesso!",
-                "Sucesso",
-                JOptionPane.INFORMATION_MESSAGE
-            );  
-            nomeCliente.setText("");        
-            emailCliente.setText("");        
-            telefoneCliente.setText("");
         } else {
             JOptionPane.showMessageDialog(null,
                     "Preencha todos os campos do cadastro",

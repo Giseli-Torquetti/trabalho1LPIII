@@ -11,7 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -52,11 +53,17 @@ public class ClienteDAO {
         if (connection == null) {
             return;
         }
+        Date dataAtual = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dataAtualString = dateFormat.format(dataAtual);
 
-        PreparedStatement pstmt = connection.prepareStatement("insert into clientes (nome, email, telefone) values (?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement pstmt = connection.prepareStatement("insert into clientes (nome, email, telefone,dt_cadastro) values (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         pstmt.setString(1, cliente.getNome());
         pstmt.setString(2, cliente.getEmail());
-        pstmt.setString(3, cliente.getTelefone());
+        pstmt.setString(3, cliente.getTelefone());        
+        pstmt.setString(4, dataAtualString);
+
+       
         pstmt.executeUpdate();
 
         ResultSet resultSet = pstmt.getGeneratedKeys();
@@ -83,7 +90,7 @@ public class ClienteDAO {
         pstmt.setString(1, cliente.getNome());
         pstmt.setString(2, cliente.getEmail());
         pstmt.setString(3, cliente.getTelefone());
-        pstmt.setInt(4, cliente.getId());
+        pstmt.setInt(4, cliente.getId()); 
 
         pstmt.executeUpdate();
 
