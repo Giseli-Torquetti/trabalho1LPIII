@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Reservas>
     <Reserva/>
-    <quarto>2</quarto>
-    <cliente>2</cliente>
+    <cliente>Maria Santos</cliente>
+    <NumeroQuarto>102</NumeroQuarto>
+    <Tipo>Quarto de Casal</Tipo>
     <checkin>2023-10-10</checkin>
     <checkout>2023-10-12</checkout>
     <Reserva/>
-    <quarto>1</quarto>
-    <cliente>1</cliente>
+    <cliente>João Silva</cliente>
+    <NumeroQuarto>101</NumeroQuarto>
+    <Tipo>Quarto de Solteiro</Tipo>
     <checkin>2023-10-10</checkin>
     <checkout>2023-10-12</checkout>
     <Reserva/>
-    <quarto>6</quarto>
-    <cliente>5</cliente>
+    <cliente>Lucas Fernandes</cliente>
+    <NumeroQuarto>302</NumeroQuarto>
+    <Tipo>Suíte Luxo</Tipo>
     <checkin>2023-10-10</checkin>
     <checkout>2023-10-12</checkout>
     <Reserva/>
-    <quarto>3</quarto>
-    <cliente>1</cliente>
+    <cliente>João Silva</cliente>
+    <NumeroQuarto>201</NumeroQuarto>
+    <Tipo>Quarto de Solteiro</Tipo>
     <checkin>2023-10-10</checkin>
     <checkout>2023-10-11</checkout>
     <Reserva/>
-    <quarto>1</quarto>
-    <cliente>1</cliente>
+    <cliente>João Silva</cliente>
+    <NumeroQuarto>101</NumeroQuarto>
+    <Tipo>Quarto de Solteiro</Tipo>
     <checkin>2023-11-06</checkin>
     <checkout>2023-11-10</checkout>
 </Reservas>

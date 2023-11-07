@@ -17,6 +17,8 @@ public class Reserva {
     private int cliente;    
     private Date checkin;    
     private Date checkout;
+    private Quarto quarto_rel;
+    private Cliente cliente_rel;
 
     public int getId() {
         return id;
@@ -57,6 +59,24 @@ public class Reserva {
     public void setCheckout(Date checkout) {
         this.checkout = checkout;
     }
+
+    public Quarto getQuarto_rel() {
+        return quarto_rel;
+    }
+
+    public void setQuarto_rel(Quarto quarto_rel) {
+        this.quarto_rel = quarto_rel;
+    }
+
+    public Cliente getCliente_rel() {
+        return cliente_rel;
+    }
+
+    public void setCliente_rel(Cliente cliente_rel) {
+        this.cliente_rel = cliente_rel;
+    }
+    
+    
 
     
     

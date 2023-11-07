@@ -48,4 +48,34 @@
         <telefone>666666666</telefone>
         <dtCadastro>2023-11-06</dtCadastro>
     </cliente>
+    <cliente>
+        <nome>teste</nome>
+        <email>teste</email>
+        <telefone>111111</telefone>
+        <dtCadastro>2023-11-06</dtCadastro>
+    </cliente>
+    <cliente>
+        <nome>teste</nome>
+        <email>teste</email>
+        <telefone>111111</telefone>
+        <dtCadastro>2023-11-06</dtCadastro>
+    </cliente>
+    <cliente>
+        <nome>giseli</nome>
+        <email>giselitorquetti</email>
+        <telefone>11111111</telefone>
+        <dtCadastro>2023-11-06</dtCadastro>
+    </cliente>
+    <cliente>
+        <nome>teste</nome>
+        <email>teste</email>
+        <telefone>2222223333333333</telefone>
+        <dtCadastro>2023-11-06</dtCadastro>
+    </cliente>
+    <cliente>
+        <nome>giseli</nome>
+        <email>teste</email>
+        <telefone>4444444</telefone>
+        <dtCadastro>2023-11-06</dtCadastro>
+    </cliente>
 </clientes>

@@ -5,6 +5,7 @@ public class Quarto {
     private String numero;
     private double preco;
     private int tipo;
+     private TipoQuarto tipo_rel;
 
     public int getId() {
         return id;
@@ -37,9 +38,18 @@ public class Quarto {
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }    
+
+    public TipoQuarto getTipo_rel() {
+        return tipo_rel;
+    }
+
+    public void setTipo_rel(TipoQuarto tipo_rel) {
+        this.tipo_rel = tipo_rel;
+    }
     
     @Override
     public String toString(){
         return this.getNumero();
     }
+    
 }

@@ -8,6 +8,7 @@ import br.edu.unijui.dataBase.DataBase;
 import br.edu.unijui.dataBase.Models.Cliente;
 import br.edu.unijui.dataBase.Models.Quarto;
 import br.edu.unijui.dataBase.Models.Reserva;
+import br.edu.unijui.dataBase.Models.TipoQuarto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -64,7 +65,14 @@ public class ReservaDAO {
 
         connection.setAutoCommit(false);
 
-        PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM reservas WHERE checkin >= ? and checkout <= ? ", Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement pstmt = connection.prepareStatement(
+            "SELECT r.id, c.nome, q.numero, t.descricao, r.checkin, r.checkout " +
+"FROM reservas r, clientes c, quartos q, tipo_quartos t " +
+"WHERE r.checkin >= ? and r.checkout <= ? " +
+"and c.id = r.clientes_id " +
+"and q.id = r.quartos_id " +
+"and t.id = q.tipo_quartos_id "
+        , Statement.RETURN_GENERATED_KEYS);
         pstmt.setDate(1, new java.sql.Date(dtInical.getTime()));        
         pstmt.setDate(2, new java.sql.Date(dtFinal.getTime()));
 
@@ -73,12 +81,19 @@ public class ReservaDAO {
         while (resultset.next()) {
             Reserva reserva = new Reserva();
             reserva.setId(resultset.getInt("id"));
-            reserva.setQuarto(resultset.getInt("quartos_id"));
-            reserva.setCliente(resultset.getInt("clientes_id"));
             reserva.setCheckin(resultset.getDate("checkin"));            
             reserva.setCheckout(resultset.getDate("checkout"));
+            Quarto quarto = new Quarto();
+            quarto.setNumero(resultset.getString("numero"));
+            reserva.setQuarto_rel(quarto);
+            TipoQuarto tipo = new TipoQuarto();
+            tipo.setDescricao(resultset.getString("descricao"));
+            quarto.setTipo_rel(tipo);
+            Cliente cliente = new Cliente();
+            cliente.setNome(resultset.getString("nome"));
+            reserva.setCliente_rel(cliente);
+            reservas.add(reserva);         
 
-            reservas.add(reserva);
         }
 
         connection.commit();

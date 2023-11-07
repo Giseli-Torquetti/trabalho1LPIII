@@ -6,6 +6,7 @@ package br.edu.unijui.dataBase.DAO;
 
 import br.edu.unijui.dataBase.Models.Reserva;
 import br.edu.unijui.dataBase.Models.Cliente;
+import br.edu.unijui.dataBase.Models.Quarto;
 import br.edu.unijui.xml.ManipuladorXML;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -64,19 +65,23 @@ public class RelatoriosDAO {
         for (Reserva reserva : reservas) {
             Element reservaElement = doc2.createElement("Reserva");
             reservasElement.appendChild(reservaElement); 
-
-            Element nomeElement = doc2.createElement("quarto");
-            Integer quarto = reserva.getQuarto();
-            Text nomeText = doc2.createTextNode(quarto.toString());
-            nomeElement.appendChild(nomeText);
-            reservasElement.appendChild(nomeElement);
-
+            
             Element clienteIdElement = doc2.createElement("cliente");
-            int clienteId = reserva.getCliente();
-            Text clienteIdText = doc2.createTextNode(String.valueOf(clienteId));
+            Text clienteIdText = doc2.createTextNode(String.valueOf(reserva.getCliente_rel()));
             clienteIdElement.appendChild(clienteIdText);
             reservasElement.appendChild(clienteIdElement);
+
+            Element numeroElement = doc2.createElement("NumeroQuarto");
+            Quarto quarto = reserva.getQuarto_rel();
+            Text nomeText = doc2.createTextNode(quarto.getNumero());
+            numeroElement.appendChild(nomeText);
+            reservasElement.appendChild(numeroElement);
+
             
+            Element nomeElement = doc2.createElement("Tipo");
+            Text nomeQuartoText = doc2.createTextNode(quarto.getTipo_rel().getDescricao());
+            nomeElement.appendChild(nomeQuartoText);
+            reservasElement.appendChild(nomeElement);
             
             Element dtCheckinElement = doc2.createElement("checkin");
             Date dataCheckin = reserva.getCheckin();
